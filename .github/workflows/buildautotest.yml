@@ -36,7 +36,13 @@ jobs:
     - name: Build with Gradle
       run: gradle jar
 
-    - name: Build multi client
+    - name: Copy client jar
+      run: cp Client/build/libs/Client-5784.jar .
+
+    - name: Copy server jar
+      run: cp Router/build/libs/Router-5784.jar .
+
+    - name: Build multi client tester
       run: gcc -o MultiClient MultiClient.c
 
     - name: Run test script
@@ -49,7 +55,7 @@ jobs:
       with:
          name: client-server-output
          path: ./test*-output.txt
-         retention-days: 7
+         retention-days: 3
       
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
     # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
