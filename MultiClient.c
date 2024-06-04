@@ -113,7 +113,7 @@ int main(int argc, char *argv[]) {
 
     for (int i = 0; i < max_count; i++) {
         if (i < count1) {
-			char msg[BUFFER_SIZE];
+	    char msg[BUFFER_SIZE];
             snprintf(msg, sizeof(msg), "%s\n", addresses1[i]);
             if (send(sockets[0], msg, strlen(msg), 0) < 0) {
                 perror("Send error on socket 1");
@@ -123,7 +123,7 @@ int main(int argc, char *argv[]) {
                 perror("Read error on socket 1");
             } else {
                 buffer[valread] = '\0';
-                printf("Socket 1 Response: %s", buffer);
+                printf("Socket 1 Response: %s -> %s", addresses1[i], buffer);
             }
         }
         if (i < count2) {
@@ -137,7 +137,7 @@ int main(int argc, char *argv[]) {
                 perror("Read error on socket 2");
             } else {
                 buffer[valread] = '\0';
-                printf("Socket 2 Response: %s", buffer);
+                printf("Socket 2 Response: %s -> %s", addresses2[i], buffer);
             }
         }
         if (i < count3) {
@@ -151,7 +151,7 @@ int main(int argc, char *argv[]) {
                 perror("Read error on socket 3");
             } else {
                 buffer[valread] = '\0';
-                printf("Socket 3 Response: %s", buffer);
+                printf("Socket 3 Response: %s -> %s", addresses3[i], buffer);
             }
         }
     }
