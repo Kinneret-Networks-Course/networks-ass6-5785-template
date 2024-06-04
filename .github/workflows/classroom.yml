@@ -208,6 +208,83 @@ jobs:
         comparison-method: regex
         timeout: 1
         max-score: 10
+    - name: Client Test17
+      id: client-test17
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Client Test17
+        setup-command: ''
+        command: cat test17-client-output.txt
+        input: ''
+        expected-output: 'Error missing parameter\s+Usage: Client -dest=ip -port=p
+          -addresses=adds'
+        comparison-method: regex
+        timeout: 1
+        max-score: 1
+    - name: Client Test18
+      id: client-test18
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Client Test18
+        setup-command: ''
+        command: cat test18-client-output.txt
+        input: ''
+        expected-output: 'Error: Illegal port number: Cannot parse null string\s+Usage:
+          Client -dest=ip -port=p -addresses=adds'
+        comparison-method: regex
+        timeout: 1
+        max-score: 1
+    - name: Client Test19
+      id: client-test19
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Client Test19
+        setup-command: ''
+        command: cat test19-client-output.txt
+        input: ''
+        expected-output: 'Error missing parameter\s+Usage: Client -dest=ip -port=p
+          -addresses=adds'
+        comparison-method: regex
+        timeout: 1
+        max-score: 1
+    - name: Client Test20
+      id: client-test20
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Client Test20
+        setup-command: ''
+        command: cat test20-client-output.txt
+        input: ''
+        expected-output: 'Error: Illegal IP address: abcdef: Name or service not known\s+Usage:
+          Client -dest=ip -port=p -addresses=adds'
+        comparison-method: regex
+        timeout: 1
+        max-score: 1
+    - name: Client Test21
+      id: client-test21
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Client Test21
+        setup-command: ''
+        command: cat test21-client-output.txt
+        input: ''
+        expected-output: 'Error: Illegal port number: For input string: "cats"\s+Usage:
+          Client -dest=ip -port=p -addresses=adds'
+        comparison-method: regex
+        timeout: 1
+        max-score: 1
+    - name: Client Test22
+      id: client-test22
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Client Test22
+        setup-command: ''
+        command: cat test22-client-output.txt
+        input: ''
+        expected-output: 'Error communicating: Connection refused'
+        comparison-method: contains
+        timeout: 1
+        max-score: 1
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
@@ -226,5 +303,11 @@ jobs:
         CLIENT-TEST8_RESULTS: "${{steps.client-test8.outputs.result}}"
         CLIENT-TEST9_RESULTS: "${{steps.client-test9.outputs.result}}"
         CLIENT-TEST10_RESULTS: "${{steps.client-test10.outputs.result}}"
+        CLIENT-TEST17_RESULTS: "${{steps.client-test17.outputs.result}}"
+        CLIENT-TEST18_RESULTS: "${{steps.client-test18.outputs.result}}"
+        CLIENT-TEST19_RESULTS: "${{steps.client-test19.outputs.result}}"
+        CLIENT-TEST20_RESULTS: "${{steps.client-test20.outputs.result}}"
+        CLIENT-TEST21_RESULTS: "${{steps.client-test21.outputs.result}}"
+        CLIENT-TEST22_RESULTS: "${{steps.client-test22.outputs.result}}"
       with:
-        runners: gradle-build,copy-client-jar,copy-server-jar,build-multiclient-tester,run-test-script,client-test1,client-test2,client-test3,client-test4,client-test5,client-test6,client-test7,client-test8,client-test9,client-test10
+        runners: gradle-build,copy-client-jar,copy-server-jar,build-multiclient-tester,run-test-script,client-test1,client-test2,client-test3,client-test4,client-test5,client-test6,client-test7,client-test8,client-test9,client-test10,client-test17,client-test18,client-test19,client-test20,client-test21,client-test22
