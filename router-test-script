@@ -5,7 +5,7 @@ echo Started Server1
 sleep 5
 
 echo Test1
-java -jar Client-5784.jar -dest=127.0.0.1 -port=5050 -addresses=21.0.58.150,21.0.58.1,21.0.57.200,21.0.49.6,21.0.40.8,21.0.58.150,22.100.144.55 > test1-client-output.txt
+java -jar Client-5784.jar -dest=127.0.0.1 -port=5050 -addresses=21.0.58.150,21.0.58.1,21.0.57.200,21.0.49.6,21.0.40.8,21.0.58.150,22.100.144.55 > test1-client-output.txt 
 
 echo Test2
 java -jar Client-5784.jar -dest=127.0.0.1 -port=5050 -addresses=21.126.128.5,85.249.95.171,159.129.120.134,148.240.87.240,13.133.56.218 > test2-client-output.txt
@@ -14,7 +14,7 @@ echo Test3
 java -jar Client-5784.jar -dest=127.0.0.1 -port=5050 -addresses=205.181.189.90,176.29.92.149,81.212.167.197,150.224.181.232,21.12.33.113,52.138.121.125,21.64.59.209,133.126.27.255,56.67.13.81,21.154.101.150 > test3-client-output.txt
 
 echo Test4
-java -jar Client-5784.jar -dest=127.0.0.1 -port=5050 -addresses=21.100.25.12,21.5.2.0 > test4-client-output.txt
+java -jar Client-5784.jar -dest=127.0.0.1 -port=5050 -addresses=21.100.25.12,21.5.2 > test4-client-output.txt
 
 kill "$shorter_router_pid"
 
