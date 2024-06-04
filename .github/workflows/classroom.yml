@@ -1,0 +1,70 @@
+name: Autograding Tests
+'on':
+- push
+- repository_dispatch
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Gradle build
+      id: gradle-build
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Gradle build
+        setup-command: ''
+        command: gradle jar
+        timeout: 5
+        max-score: 0
+    - name: Copy client JAR
+      id: copy-client-jar
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Copy client JAR
+        setup-command: ''
+        command: cp Client/build/libs/Client-5784.jar .
+        timeout: 1
+        max-score: 0
+    - name: Copy server JAR
+      id: copy-server-jar
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Copy server JAR
+        setup-command: ''
+        command: cp Router/build/libs/Router-5784.jar .
+        timeout: 1
+        max-score: 0
+    - name: Build Multiclient tester
+      id: build-multiclient-tester
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Build Multiclient tester
+        setup-command: ''
+        command: gcc -o MultiClient MultiClient.c
+        timeout: 1
+        max-score: 0
+    - name: Run test script
+      id: run-test-script
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Run test script
+        setup-command: chmod 700 router-test-script
+        command: "./router-test-script"
+        timeout: 10
+        max-score: 0
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        GRADLE-BUILD_RESULTS: "${{steps.gradle-build.outputs.result}}"
+        COPY-CLIENT-JAR_RESULTS: "${{steps.copy-client-jar.outputs.result}}"
+        COPY-SERVER-JAR_RESULTS: "${{steps.copy-server-jar.outputs.result}}"
+        BUILD-MULTICLIENT-TESTER_RESULTS: "${{steps.build-multiclient-tester.outputs.result}}"
+        RUN-TEST-SCRIPT_RESULTS: "${{steps.run-test-script.outputs.result}}"
+      with:
+        runners: gradle-build,copy-client-jar,copy-server-jar,build-multiclient-tester,run-test-script
