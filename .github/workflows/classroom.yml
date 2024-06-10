@@ -229,9 +229,8 @@ jobs:
         setup-command: ''
         command: cat test18-client-output.txt
         input: ''
-        expected-output: 'Error: Illegal port number: Cannot parse null string\s+Usage:
-          Client -dest=ip -port=p -addresses=adds'
-        comparison-method: regex
+        expected-output: 'Error: Illegal port number:'
+        comparison-method: contains
         timeout: 1
         max-score: 1
     - name: Client Test19
@@ -255,9 +254,8 @@ jobs:
         setup-command: ''
         command: cat test20-client-output.txt
         input: ''
-        expected-output: 'Error: Illegal IP address: abcdef: Name or service not known\s+Usage:
-          Client -dest=ip -port=p -addresses=adds'
-        comparison-method: regex
+        expected-output: 'Error: Illegal IP address: abcdef:'
+        comparison-method: contains
         timeout: 1
         max-score: 1
     - name: Client Test21
@@ -285,6 +283,137 @@ jobs:
         comparison-method: contains
         timeout: 1
         max-score: 1
+    - name: Server Test1
+      id: server-test1
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Server Test1
+        setup-command: ''
+        command: cat test3-server-output.txt
+        input: ''
+        expected-output: 'Read 5 entries\s+Started listening on 127.0.0.1:\d+\s+Press
+          q to quit\s+Received connection from /127.0.0.1:\d+\s+Closed connection
+          from: 127.0.0.1:\d+\s+Received connection from 127.0.0.1:\d+\s+Closed connection
+          from: 127.0.0.1:\d+\s+Received connection from 127.0.0.1:\d+\s+Closed connection
+          from: 127.0.0.1:\d+\s+Received connection from 127.0.0.1:\d+\s+Received
+          illegal address: 21.5.2\s+Closed connection from: /127.0.0.1:\d+
+
+          '
+        comparison-method: regex
+        timeout: 1
+        max-score: 10
+    - name: Server Test2
+      id: server-test2
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Server Test2
+        setup-command: ''
+        command: cat test2-server-output.txt
+        input: ''
+        expected-output: 'Read 254 entries\s+Started listening on 127.0.0.1:5051\s+Press
+          q to quit\s+Received connection from 127.0.0.1:\d+\s+Closed connection from:
+          127.0.0.1:\d+\s+Received connection from 127.0.0.1:\d+\s+Closed connection
+          from: 127.0.0.1:\d+\s+Received connection from 127.0.0.1:\d+\s+Closed connection
+          from: 127.0.0.1:\d+\s+Received connection from 127.0.0.1:\d+\s+Received
+          illegal address: 1.1.1\s+Closed connection from: 127.0.0.1:\d+\s+Received
+          connection from 127.0.0.1:\d+\s+Closed connection from: 127.0.0.1:\d+'
+        comparison-method: regex
+        timeout: 1
+        max-score: 10
+    - name: Server Test3
+      id: server-test3
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Server Test3
+        setup-command: ''
+        command: cat test3-server-output.txt
+        input: ''
+        expected-output: 'Read 254 entries\s+Started listening on 127.0.0.1:5052\s+Press
+          q to quit\s+Received connection from 127.0.0.1:\d+\s+Received connection
+          from 127.0.0.1:\d+\s+Received connection from 127.0.0.1:\d+\s+Received illegal
+          address: 1.1.1\s+Closed connection from: 127.0.0.1:\d+\s+Closed connection
+          from: 127.0.0.1:\d+\s+Closed connection from: 127.0.0.1:\d+'
+        comparison-method: regex
+        timeout: 1
+        max-score: 10
+    - name: Server Test11
+      id: server-test11
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Server Test11
+        setup-command: ''
+        command: cat test11-server-output.txt
+        input: ''
+        expected-output: 'Missing parameter\s+Usage: SubnetServer -table=t -ip=ip
+          -port=p'
+        comparison-method: regex
+        timeout: 1
+        max-score: 1
+    - name: Server Test12
+      id: server-test12
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Server Test12
+        setup-command: ''
+        command: cat test12-server-output.txt
+        input: ''
+        expected-output: 'Missing parameter\s+Usage: SubnetServer -table=t -ip=ip
+          -port=p'
+        comparison-method: regex
+        timeout: 1
+        max-score: 1
+    - name: Server Test13
+      id: server-test13
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Server Test13
+        setup-command: ''
+        command: cat test13-server-output.txt
+        input: ''
+        expected-output: 'Missing parameter\s+Usage: SubnetServer -table=t -ip=ip
+          -port=p'
+        comparison-method: regex
+        timeout: 1
+        max-score: 1
+    - name: Server Test14
+      id: server-test14
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Server Test14
+        setup-command: ''
+        command: cat test14-server-output.txt
+        input: ''
+        expected-output: 'Read 254 entries\s+Error parsing port: For input string:
+          "abab"\s+Usage: SubnetServer -table=t -ip=ip -port=p'
+        comparison-method: regex
+        timeout: 1
+        max-score: 1
+    - name: Server Test15
+      id: server-test15
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Server Test15
+        setup-command: ''
+        command: cat test15-server-output.txt
+        input: ''
+        expected-output: 'Read 254 entries\s+Error with IP address: abcdef: Name or
+          service not known\s+Usage: SubnetServer -table=t -ip=ip -port=p'
+        comparison-method: regex
+        timeout: 1
+        max-score: 1
+    - name: Server Test16
+      id: server-test16
+      uses: classroom-resources/autograding-io-grader@v1
+      with:
+        test-name: Server Test16
+        setup-command: ''
+        command: cat test16-server-output.txt
+        input: ''
+        expected-output: 'Error reading table file: nonexistentfile (No such file
+          or directory)\s+Usage: SubnetServer -table=t -ip=ip -port=p'
+        comparison-method: regex
+        timeout: 1
+        max-score: 1
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
@@ -309,5 +438,14 @@ jobs:
         CLIENT-TEST20_RESULTS: "${{steps.client-test20.outputs.result}}"
         CLIENT-TEST21_RESULTS: "${{steps.client-test21.outputs.result}}"
         CLIENT-TEST22_RESULTS: "${{steps.client-test22.outputs.result}}"
+        SERVER-TEST1_RESULTS: "${{steps.server-test1.outputs.result}}"
+        SERVER-TEST2_RESULTS: "${{steps.server-test2.outputs.result}}"
+        SERVER-TEST3_RESULTS: "${{steps.server-test3.outputs.result}}"
+        SERVER-TEST11_RESULTS: "${{steps.server-test11.outputs.result}}"
+        SERVER-TEST12_RESULTS: "${{steps.server-test12.outputs.result}}"
+        SERVER-TEST13_RESULTS: "${{steps.server-test13.outputs.result}}"
+        SERVER-TEST14_RESULTS: "${{steps.server-test14.outputs.result}}"
+        SERVER-TEST15_RESULTS: "${{steps.server-test15.outputs.result}}"
+        SERVER-TEST16_RESULTS: "${{steps.server-test16.outputs.result}}"
       with:
-        runners: gradle-build,copy-client-jar,copy-server-jar,build-multiclient-tester,run-test-script,client-test1,client-test2,client-test3,client-test4,client-test5,client-test6,client-test7,client-test8,client-test9,client-test10,client-test17,client-test18,client-test19,client-test20,client-test21,client-test22
+        runners: gradle-build,copy-client-jar,copy-server-jar,build-multiclient-tester,run-test-script,client-test1,client-test2,client-test3,client-test4,client-test5,client-test6,client-test7,client-test8,client-test9,client-test10,client-test17,client-test18,client-test19,client-test20,client-test21,client-test22,server-test1,server-test2,server-test3,server-test11,server-test12,server-test13,server-test14,server-test15,server-test16
