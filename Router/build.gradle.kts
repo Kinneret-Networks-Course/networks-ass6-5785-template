@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "il.ac.kinneret.subnet"
-version = "5784"
+version = "5785"
 
 repositories {
     mavenCentral()

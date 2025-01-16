@@ -1,3 +1,11 @@
+/**
+Assignment 6 Multiclient code
+Introduction to Computer Networks
+Semester 1 5785
+
+Michael J. May
+**/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
